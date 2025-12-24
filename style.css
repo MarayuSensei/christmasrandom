@@ -9,23 +9,12 @@ body {
     
     /* ⭐ รูปพื้นหลัง - เลือก 1 แบบ */
     
-    /* แบบที่ 1: รูปภาพเต็มหน้าจอ (แนะนำ) */
-    background-image: url('images/background.png');
+    /* 🖥️ รูปพื้นหลังสำหรับคอมพิวเตอร์/แท็บเล็ต (แนวนอน) */
+    background-image: url('images/background-desktop.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
-    /* แบบที่ 2: รูปภาพ + สีทับ (ให้ดูนุ่มนวล) */
-    /* background: 
-        linear-gradient(rgba(102, 126, 234, 0.6), rgba(118, 75, 162, 0.6)),
-        url('images/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; */
-    
-    /* แบบที่ 3: ใช้สี Gradient แทน (ถ้าไม่มีรูป) */
-    /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
     
     min-height: 100vh;
     display: flex;
@@ -34,6 +23,20 @@ body {
     padding: 20px;
     position: relative;
     overflow: hidden;
+}
+
+/* 📱 รูปพื้นหลังสำหรับมือถือ (แนวตั้ง) */
+@media (max-width: 768px) and (orientation: portrait) {
+    body {
+        background-image: url('images/background-mobile.png');
+    }
+}
+
+/* 🔄 รูปพื้นหลังสำหรับมือถือแนวนอน */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        background-image: url('images/background-desktop.png');
+    }
 }
 
 /* ❄️ เอฟเฟกต์หิมะตก */
