@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>🎄 Christmas Gift Random 🎁</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <img src="imageschar_left.png" class="character left">
+
+  <div class="card">
+    <h1>🎄 สุ่มของขวัญคริสต์มาส 🎁</h1>
+
+    <input type="text" id="username" placeholder="กรอกชื่อของคุณ">
+    <button id="randomBtn">🎁 สุ่มของขวัญ</button>
+  </div>
+
+  <img src="imageschar_right.png" class="character right">
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <h2 id="resultText"></h2>
+    <button onclick="closePopup()">ตกลง 🎉</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

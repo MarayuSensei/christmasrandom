@@ -1,0 +1,77 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(#b30000, #006400);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.character {
+  width: 150px;
+}
+
+.card {
+  background: rgba(0,0,0,0.4);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px gold;
+}
+
+input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 12px 25px;
+  border-radius: 20px;
+  border: none;
+  background: gold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: orange;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
