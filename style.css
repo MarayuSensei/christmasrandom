@@ -28,6 +28,28 @@ body {
     animation: fadeInDown 0.8s ease;
 }
 
+/* ตัวละครสำหรับมือถือ - แสดงด้านบน */
+.characters-mobile {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.character-left-mobile,
+.character-right-mobile {
+    flex: 0 0 100px;
+}
+
+.character-left-mobile img,
+.character-right-mobile img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+/* Layout หลัก */
 .main-section {
     display: flex;
     align-items: center;
@@ -35,10 +57,15 @@ body {
     gap: 40px;
 }
 
-.character-left,
-.character-right {
+/* ตัวละครสำหรับคอมพิวเตอร์ */
+.character-desktop {
     flex: 0 0 250px;
     animation: bounce 2s infinite;
+}
+
+.character-left,
+.character-right {
+    display: block;
 }
 
 .character-left img,
@@ -60,6 +87,513 @@ body {
     flex: 1;
     max-width: 500px;
     background: white;
+    padding: 60px 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease;
+}
+
+.input-container {
+    margin-bottom: 30px;
+}
+
+#nameInput {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.2rem;
+    border: 3px solid #667eea;
+    border-radius: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+#nameInput:focus {
+    border-color: #764ba2;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+    transform: scale(1.02);
+}
+
+.random-btn {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.random-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.random-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.8rem;
+    animation: rotate 2s linear infinite;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup.show {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    padding: 50px;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: popupSlideIn 0.5s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.confetti::before,
+.confetti::after {
+    content: '🎊';
+    position: absolute;
+    font-size: 3rem;
+    animation: confettiFall 3s ease infinite;
+}
+
+.confetti::before {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.confetti::after {
+    right: 20%;
+    animation-delay: 0.5s;
+}
+
+.popup-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: scaleUp 0.6s ease;
+}
+
+.popup-title {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.popup-name {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.popup-text {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.popup-prize {
+    font-size: 2rem;
+    color: #764ba2;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 15px;
+    animation: glow 1.5s ease infinite;
+}
+
+.close-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading */
+.loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.loading.show {
+    display: flex;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading p {
+    font-size: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes popupSlideIn {
+    from {
+        transform: scale(0.7) translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes confettiFall {
+    0% {
+        top: -10%;
+        opacity: 1;
+    }
+    100% {
+        top: 110%;
+        opacity: 0;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(252, 182, 159, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(252, 182, 159, 0.8);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+
+/* แท็บเล็ตขนาดกลาง (768px - 992px) */
+@media (max-width: 992px) {
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+    
+    .character-desktop {
+        flex: 0 0 180px;
+    }
+    
+    .center-content {
+        padding: 50px 35px;
+    }
+}
+
+/* มือถือแนวนอนและแท็บเล็ตเล็ก (576px - 768px) */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    /* ซ่อนตัวละครแบบคอมพิวเตอร์ */
+    .character-desktop {
+        display: none !important;
+    }
+    
+    /* แสดงตัวละครแบบมือถือ */
+    .characters-mobile {
+        display: flex;
+    }
+    
+    .character-left-mobile {
+        animation: bounce 2s infinite;
+        animation-delay: 0s;
+    }
+    
+    .character-right-mobile {
+        animation: bounce 2s infinite;
+        animation-delay: 0.5s;
+    }
+    
+    .main-section {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .center-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 40px 30px;
+    }
+    
+    #nameInput {
+        font-size: 1.1rem;
+        padding: 18px;
+    }
+    
+    .random-btn {
+        font-size: 1.3rem;
+        padding: 18px;
+    }
+    
+    .btn-icon {
+        font-size: 1.5rem;
+    }
+}
+
+/* มือถือแนวตั้ง (สูงสุด 576px) */
+@media (max-width: 576px) {
+    body {
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    
+    .characters-mobile {
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .character-left-mobile,
+    .character-right-mobile {
+        flex: 0 0 80px;
+    }
+    
+    .center-content {
+        padding: 35px 25px;
+        border-radius: 20px;
+    }
+    
+    #nameInput {
+        font-size: 1rem;
+        padding: 16px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+    
+    .input-container {
+        margin-bottom: 25px;
+    }
+    
+    .random-btn {
+        font-size: 1.2rem;
+        padding: 16px;
+        border-radius: 12px;
+    }
+    
+    .btn-icon {
+        font-size: 1.4rem;
+    }
+    
+    /* Popup สำหรับมือถือ */
+    .popup-content {
+        padding: 35px 25px;
+        border-radius: 20px;
+        width: 95%;
+    }
+    
+    .popup-icon {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .popup-title {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+    
+    .popup-name {
+        font-size: 1.3rem;
+    }
+    
+    .popup-text {
+        font-size: 1rem;
+    }
+    
+    .popup-prize {
+        font-size: 1.6rem;
+        padding: 18px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+    }
+    
+    .close-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+        border-radius: 12px;
+    }
+    
+    .confetti::before,
+    .confetti::after {
+        font-size: 2rem;
+    }
+}
+
+/* มือถือขนาดเล็กมาก (สูงสุด 380px) */
+@media (max-width: 380px) {
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .character-left-mobile,
+    .character-right-mobile {
+        flex: 0 0 70px;
+    }
+    
+    .center-content {
+        padding: 30px 20px;
+    }
+    
+    #nameInput {
+        font-size: 0.95rem;
+        padding: 14px;
+    }
+    
+    .random-btn {
+        font-size: 1.1rem;
+        padding: 14px;
+    }
+    
+    .popup-content {
+        padding: 30px 20px;
+    }
+    
+    .popup-icon {
+        font-size: 3rem;
+    }
+    
+    .popup-title {
+        font-size: 1.8rem;
+    }
+    
+    .popup-prize {
+        font-size: 1.4rem;
+        padding: 15px;
+    }
+}    background: white;
     padding: 60px 40px;
     border-radius: 30px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -393,4 +927,5 @@ body {
         padding: 30px;
         margin: 20px;
     }
+
 }
