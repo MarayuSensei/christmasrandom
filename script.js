@@ -1,5 +1,5 @@
 // ⚙️ ตั้งค่า URL ของ Google Apps Script Web App
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_ZHJuFrHD3PQ-X9R4DwCScH5LPkV0rpH4D84k1vg2d4f9gyKNGCjRsVxTcXigI96o/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_bW7A1yOZjeCVGATNq_g9g_eXwbilk7m6kcexQ3xDGzKK7hBznF9W_V7jt9tYqGg0/exec';
 
 // Elements
 const nameInput = document.getElementById('nameInput');
@@ -32,31 +32,34 @@ async function handleRandom() {
         return;
     }
     
+    // ตรวจสอบว่าตั้งค่า SCRIPT_URL หรือยัง
+    if (!SCRIPT_URL || SCRIPT_URL === 'ใส่ URL ของ Web App ที่ได้จาก Google Apps Script ที่นี่') {
+        alert('❌ กรุณาตั้งค่า SCRIPT_URL ในไฟล์ script.js ก่อน');
+        return;
+    }
+    
     // แสดง Loading
     showLoading();
     
     try {
-        // เรียก API เพื่อสุ่มของรางวัล
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors', // สำคัญสำหรับ Google Apps Script
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                action: 'randomPrize',
-                name: name
-            })
+        // ใช้ GET request เพราะทำงานได้ดีกับ Google Apps Script
+        const url = `${SCRIPT_URL}?action=randomPrize&name=${encodeURIComponent(name)}`;
+        
+        console.log('กำลังส่งคำขอไปที่:', url);
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            redirect: 'follow'
         });
         
-        // เนื่องจากใช้ no-cors จึงต้องใช้วิธีอื่นในการรับข้อมูล
-        // สำหรับ Google Apps Script แนะนำให้ใช้ JSONP หรือ fetch แบบ GET
+        console.log('Response status:', response.status);
         
-        // วิธีทางเลือก: ใช้ GET request
-        const result = await fetch(
-            `${SCRIPT_URL}?action=randomPrize&name=${encodeURIComponent(name)}`,
-            { method: 'GET' }
-        ).then(res => res.json());
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('ผลลัพธ์:', result);
         
         hideLoading();
         
@@ -71,8 +74,8 @@ async function handleRandom() {
         
     } catch (error) {
         hideLoading();
-        console.error('Error:', error);
-        alert('❌ เกิดข้อผิดพลาดในการสุ่ม กรุณาลองใหม่อีกครั้ง');
+        console.error('Error details:', error);
+        alert('❌ เกิดข้อผิดพลาดในการสุ่ม\n\nกรุณาตรวจสอบ:\n1. SCRIPT_URL ถูกต้องหรือไม่\n2. Deploy Web App แล้วหรือยัง\n3. ตั้งค่า "Who has access" เป็น "Anyone"\n\nดูรายละเอียดใน Console (F12)');
     }
 }
 
