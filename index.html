@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>🎄 Christmas Gift Random 🎁</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 สุ่มของรางวัล</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-  <img src="imageschar_left.png" class="character left">
-
-  <div class="card">
-    <h1>🎄 สุ่มของขวัญคริสต์มาส 🎁</h1>
-
-    <input type="text" id="username" placeholder="กรอกชื่อของคุณ">
-    <button id="randomBtn">🎁 สุ่มของขวัญ</button>
-  </div>
-
-  <img src="imageschar_right.png" class="character right">
-</div>
-
-<!-- Popup -->
-<div id="popup" class="popup hidden">
-  <div class="popup-content">
-    <h2 id="resultText"></h2>
-    <button onclick="closePopup()">ตกลง 🎉</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
+    <div class="container">
+        <h1 class="title">🎁 สุ่มของรางวัล</h1>
+        
+        <div class="main-section">
+            <!-- ตัวละครซ้าย -->
+            <div class="character-left">
+                <img src="images/imagecharacterleft.png" alt="Character Left">
+            </div>
+            
+            <!-- ส่วนกลาง -->
+            <div class="center-content">
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        id="nameInput" 
+                        placeholder="กรอกชื่อ"
+                        maxlength="50"
+                    >
+                </div>
+                
+                <button id="randomBtn" class="random-btn">
+                    <span class="btn-text">สุ่ม</span>
+                    <span class="btn-icon">🎲</span>
+                </button>
+            </div>
+            
+            <!-- ตัวละครขวา -->
+            <div class="character-right">
+                <img src="images/imagecharacterright.png" alt="Character Right">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pop-up -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="confetti"></div>
+            <div class="popup-icon">🎉</div>
+            <h2 class="popup-title">ยินดีด้วย!</h2>
+            <p class="popup-name" id="popupName"></p>
+            <p class="popup-text">คุณได้รับ</p>
+            <p class="popup-prize" id="popupPrize"></p>
+            <button id="closeBtn" class="close-btn">รับของรางวัล 🎁</button>
+        </div>
+    </div>
+    
+    <!-- Loading -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>กำลังสุ่ม...</p>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
